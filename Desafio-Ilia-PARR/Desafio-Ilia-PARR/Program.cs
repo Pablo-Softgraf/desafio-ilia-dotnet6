@@ -1,8 +1,14 @@
+using Desafio_Ilia_PARR.Model.Services;
+using Desafio_Ilia_PARR.Model.Services.Implementations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+// Add Dependency Injection
+builder.Services.AddScoped<IAlocacaoService, AlocacaoServiceImplementation>();
+builder.Services.AddScoped<IBatidasService, BatidasServiceImplementation>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
