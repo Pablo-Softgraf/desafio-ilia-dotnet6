@@ -1,13 +1,26 @@
-using Desafio_Ilia_PARR.Model.Services;
-using Desafio_Ilia_PARR.Model.Services.Implementations;
+using AutoMapper;
+using Desafio_Ilia_PARR.Config;
+using Desafio_Ilia_PARR.Model.Context;
+using Desafio_Ilia_PARR.Repository;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connection = builder.Configuration["ConnectionStrings:MySQLConnectionString"];
+builder.Services.AddDbContext<MySQLContext>(option => option.
+                    UseMySql(connection,
+                             new MySqlServerVersion("10.4.13-MariaDB")));
+
+
+//Mapping VOs.
+IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+// Add Dependency Injection
+builder.Services.AddScoped<IAlocacaoRepository, AlocacaoRepository>();
 
 // Add services to the container.
 builder.Services.AddControllers();
-// Add Dependency Injection
-builder.Services.AddScoped<IAlocacaoService, AlocacaoServiceImplementation>();
-builder.Services.AddScoped<IBatidasService, BatidasServiceImplementation>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

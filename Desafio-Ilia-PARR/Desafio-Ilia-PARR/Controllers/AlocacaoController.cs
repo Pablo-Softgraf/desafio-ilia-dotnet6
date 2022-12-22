@@ -1,43 +1,38 @@
+using Desafio_Ilia_PARR.Data.ValueObjects;
 using Desafio_Ilia_PARR.Model;
-using Desafio_Ilia_PARR.Model.Services;
+using Desafio_Ilia_PARR.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 
 namespace Desafio_Ilia_PARR.Controllers
 {
     [ApiController]
-    [Route("v1/[controller]")]
+    [Route("v1/[controller]/alocacoes")]
     public class AlocacaoController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        private IAlocacaoRepository _repository;
 
-        private readonly ILogger<AlocacaoController> _logger;
-        private IAlocacaoService _alocacaoService;
-        
-        public AlocacaoController(ILogger<AlocacaoController> logger, IAlocacaoService alocacaoService)
+        public AlocacaoController(IAlocacaoRepository repository)
         {
-            _logger = logger;
-            _alocacaoService = alocacaoService;
+            _repository = repository ?? throw new
+                ArgumentNullException(nameof(repository));
         }
 
-        [HttpGet(Name = "alocacoes")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpPost]
+        public async Task<ActionResult<AlocacaoVO>> Create(AlocacaoVO alocacaoVO)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            List<AlocacaoVO> alocado = await _repository.ListAll(alocacaoVO);
+
+            if (alocado.Count > 0)
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
-        }
+                Mensagem _msg = new Mensagem();
+                _msg.mensagem = "Não pode alocar tempo maior que o tempo trabalhado no dia";
+                return BadRequest(_msg);
+            }
 
-        [HttpPost(Name ="alocacao")]
-        public void Post([FromBody] Alocacao alocacao)
-        {
-            _alocacaoService.insereAlocacao(alocacao);
+            if (alocacaoVO == null) return BadRequest();
+            var alocacao = await _repository.Create(alocacaoVO);
+            return Created("", alocacao); 
         }
 
 

@@ -1,15 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Desafio_Ilia_PARR.Model.Base;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Desafio_Ilia_PARR.Model
 {
-    public class Alocacao
+    [Table("alocacao")]
+    public class Alocacao : BaseEntity
     {
-        public long? Id { get; set; }
+        [Column("dia")]
         [Required]
         public string? dia { get; set; }
-        [Required]
+        [Column("tempo")]
         public string? tempo { get; set; }
-        [Required]
+        [Column("nomeProjeto")]
         public string? nomeProjeto { get; set; }
+
     }
 }
