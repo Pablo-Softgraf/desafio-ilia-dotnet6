@@ -15,8 +15,9 @@ builder.Services.AddDbContext<MySQLContext>(option => option.
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-// Add Dependency Injection
+// Add Dependency Injections
 builder.Services.AddScoped<IAlocacaoRepository, AlocacaoRepository>();
+builder.Services.AddScoped<IMomentoRepository, MomentoRepository>();
 
 // Add services to the container.
 builder.Services.AddControllers();

@@ -5,6 +5,7 @@ namespace Desafio_Ilia_PARR.Data.ValueObjects
 {
     public class AlocacaoVO
     {
+        
         public long Id { get; set; }
         public string? dia { get; set; }
         public string? tempo { get; set; }
@@ -12,7 +13,8 @@ namespace Desafio_Ilia_PARR.Data.ValueObjects
 
         public AlocacaoVO()
         {
-            dia = DateTime.Now.ToString("yyyy'-'MM'-'dd");
+            dia = DateTime.Now.ToString("dd/MM/yyyy");
+            nomeProjeto = "Insira nome do projeto";
         }
 
     }

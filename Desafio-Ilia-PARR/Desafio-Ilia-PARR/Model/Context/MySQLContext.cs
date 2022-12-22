@@ -8,7 +8,8 @@ namespace Desafio_Ilia_PARR.Model.Context
     {
         public MySQLContext() {}
         public MySQLContext(DbContextOptions<MySQLContext> options) : base(options) { }
-        public DbSet<Alocacao> Alocacoes { get; set; }  
+        public DbSet<Alocacao> Alocacoes { get; set; }
+        public DbSet<Momento> Momentos { get; set; }
 
 
     }

@@ -2,7 +2,7 @@
 {
     public class Registro
     {
-        public DateOnly dia { get; set; }
+        public string? dia { get; set; }
         public List<string>? horarios { get; set; }
     }
 }

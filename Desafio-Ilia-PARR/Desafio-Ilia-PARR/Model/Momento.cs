@@ -1,7 +1,14 @@
-﻿namespace Desafio_Ilia_PARR.Model
+﻿using Desafio_Ilia_PARR.Model.Base;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Desafio_Ilia_PARR.Model
 {
-    public class Momento
+    [Table("momento")]
+    public class Momento : BaseEntity 
     {
+        [Column("dataHora")]
+        [Required]
         public string? dataHora { get; set; }
     }
 }

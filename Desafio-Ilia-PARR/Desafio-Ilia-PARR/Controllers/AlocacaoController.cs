@@ -21,12 +21,18 @@ namespace Desafio_Ilia_PARR.Controllers
         [HttpPost]
         public async Task<ActionResult<AlocacaoVO>> Create(AlocacaoVO alocacaoVO)
         {
-            List<AlocacaoVO> alocado = await _repository.ListAll(alocacaoVO);
+            List<AlocacaoVO> _alocado = await _repository.ListAll(alocacaoVO);
 
-            if (alocado.Count > 0)
+            if (_alocado.Count > 0)
             {
                 Mensagem _msg = new Mensagem();
                 _msg.mensagem = "Não pode alocar tempo maior que o tempo trabalhado no dia";
+                return BadRequest(_msg);
+            }
+            if (!IsDateTime(alocacaoVO.dia))
+            {
+                Mensagem _msg = new Mensagem();
+                _msg.mensagem = "Campo Dia com formato incorreto";
                 return BadRequest(_msg);
             }
 
@@ -35,6 +41,11 @@ namespace Desafio_Ilia_PARR.Controllers
             return Created("", alocacao); 
         }
 
-
+        public static bool IsDateTime(string tempDate)
+        {
+            DateTime fromDateValue;
+            var format = "dd/MM/yyyy";
+            return DateTime.TryParseExact(tempDate, format, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out fromDateValue);
+        }
     }
 }

@@ -12,6 +12,8 @@ namespace Desafio_Ilia_PARR.Config
             {
                 config.CreateMap<AlocacaoVO, Alocacao>();
                 config.CreateMap<Alocacao, AlocacaoVO>();
+                config.CreateMap<MomentoVO, Momento>();
+                config.CreateMap<Momento, MomentoVO>();
             });
             return mappingConfig; 
         }

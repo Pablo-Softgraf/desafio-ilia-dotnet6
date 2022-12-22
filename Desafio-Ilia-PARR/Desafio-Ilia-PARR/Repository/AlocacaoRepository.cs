@@ -3,7 +3,6 @@ using Desafio_Ilia_PARR.Data.ValueObjects;
 using Desafio_Ilia_PARR.Model;
 using Desafio_Ilia_PARR.Model.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Desafio_Ilia_PARR.Repository
 {
