@@ -18,7 +18,7 @@ Criação e conexão com o banco de dados.
 
 Criação e configurações no Projeto
 
-1. Abrir <b>VS2022CE</b> > Novo Projeto > Clonar Repositório > Salvar em alguma pasta
+1. Abrir <b>VS2022CE</b> > Novo Projeto > Clonar Repositório > Salvar em alguma pasta de sua preferência.
 2. Definir a string de conexão para o database criado no arquivo <b>appsettings.json</b> na seção abaixo :
     "ConnectionStrings": {
         "MySQLConnectionString": "Server=endereco_servidor;DataBase=ilia_ctrl_ponto;Uid=identificacao_usuario;Pwd=senha_usuario"
