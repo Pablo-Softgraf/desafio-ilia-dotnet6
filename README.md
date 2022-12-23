@@ -29,7 +29,7 @@ Criação e configurações no Projeto
 
 1. Após a criação do database devemos realizar a execução das migrations no MySQL com os comandos abaixo :
 
-Execute o comando abaixo para atualizar as migrations no banco de dados:
+Execute o comando abaixo para atualizar as migrations no banco de dados, sempre na pasta do projeto que contenha o arquivo <b>Desafio-Ilia-PARR.csproj</b>:
 
     dotnet ef database update
     
