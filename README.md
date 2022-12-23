@@ -7,7 +7,7 @@ Instruções
 
 1. Visual Studio 2022 ( Community Edition ) link =>  https://visualstudio.microsoft.com/pt-br/vs/community/
 2. Dotnet SDK 6.0.404   link => https://dotnet.microsoft.com/pt-br/download/dotnet/6.0
-3. MySQL Database => versão usada no projeto "10.4.13-MariaDB".
+3. MySQL Database => versão usada no projeto "10.4.13-MariaDB"
 
 
 <b>Procedimentos</b>
