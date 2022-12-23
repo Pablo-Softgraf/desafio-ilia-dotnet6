@@ -8,5 +8,7 @@ namespace Desafio_Ilia_PARR.Repository
         Task<MomentoVO> Create(MomentoVO alocacaoVO);
         Task<List<Momento>> ListAll(MomentoVO vo);
         Task<List<Momento>> FindAllDates(MomentoVO vo);
+        Task<List<Momento>> FindByMonth(string mes);
+
     }
 }

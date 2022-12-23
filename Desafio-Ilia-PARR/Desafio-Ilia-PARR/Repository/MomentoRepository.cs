@@ -3,6 +3,7 @@ using Desafio_Ilia_PARR.Data.ValueObjects;
 using Desafio_Ilia_PARR.Model;
 using Desafio_Ilia_PARR.Model.Context;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Desafio_Ilia_PARR.Repository
@@ -42,5 +43,11 @@ namespace Desafio_Ilia_PARR.Repository
             return _mapper.Map<MomentoVO>(_momento);
         }
 
+        public async Task<List<Momento>> FindByMonth(string mes)
+        {
+            var RepeatedDay = await _context.Momentos.ToListAsync();
+            List<Momento> _momentos = RepeatedDay.Where(r => Convert.ToDateTime(r.dataHora).ToString("yyyy-MM") == mes).ToList();
+            return _momentos;
+        }
     }
 }

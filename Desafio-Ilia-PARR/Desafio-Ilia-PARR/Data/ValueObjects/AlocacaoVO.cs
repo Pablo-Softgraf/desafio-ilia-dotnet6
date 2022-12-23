@@ -13,7 +13,7 @@ namespace Desafio_Ilia_PARR.Data.ValueObjects
 
         public AlocacaoVO()
         {
-            dia = DateTime.Now.ToString("dd/MM/yyyy");
+            dia = DateTime.Now.ToString("yyyy-MM-dd");
             nomeProjeto = "Insira nome do projeto";
         }
 

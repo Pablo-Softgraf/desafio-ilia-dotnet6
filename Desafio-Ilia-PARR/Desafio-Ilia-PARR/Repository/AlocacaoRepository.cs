@@ -33,5 +33,12 @@ namespace Desafio_Ilia_PARR.Repository
             return _mapper.Map<List<AlocacaoVO>>(alocacoes);
 
         }
+
+        public async Task<List<Alocacao>> ListByDate(string myDate)
+        {
+            var RepeatedDay = await _context.Alocacoes.ToListAsync();
+            List<Alocacao> alocacoes = RepeatedDay.Where(r => r.dia?.Substring(0,7) == myDate).ToList();
+            return alocacoes;
+        }
     }
 }

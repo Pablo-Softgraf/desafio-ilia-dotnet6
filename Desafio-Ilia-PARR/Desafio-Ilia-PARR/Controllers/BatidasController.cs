@@ -8,7 +8,7 @@ using System;
 namespace Desafio_Ilia_PARR.Controllers
 {
     [ApiController]
-    [Route("v1/[controller]")]
+    [Route("v1/batidas")]
     public class BatidasController : ControllerBase
     {
         private IMomentoRepository _repository;
@@ -19,20 +19,18 @@ namespace Desafio_Ilia_PARR.Controllers
                 ArgumentNullException(nameof(repository));
         }
 
-        [HttpPost("insereBatida")]
-        public async Task<ActionResult<MomentoVO>> Create(MomentoVO momentoVO)
+        [HttpPost()]
+        public async Task<ActionResult<MomentoVO>> insereBatida(MomentoVO momentoVO)
         {
-            
             if (momentoVO == null) return BadRequest();
 
             Mensagem _msg = new Mensagem();
             List<Momento> _momentos = await _repository.FindAllDates(momentoVO);
             DateTime _dataHora = Convert.ToDateTime(momentoVO.dataHora);
-
+            
             //********************************************************************
             // Validações com padronização de retornos                           *   
             //********************************************************************            
-
             if (!IsDateTime(momentoVO.dataHora))
             {
                 _msg.mensagem = "Data e Hora em formato inválido";
@@ -58,11 +56,11 @@ namespace Desafio_Ilia_PARR.Controllers
                 return Conflict(_msg);
             }
 
-            var _dataHoraAlmoco = _momentos.OrderBy(r => Convert.ToDateTime(r.dataHora))
-                                          .Max(r => Convert.ToDateTime(r.dataHora));
-
             if (_momentos.Count == 2)
             {
+                var _dataHoraAlmoco = _momentos.OrderBy(r => Convert.ToDateTime(r.dataHora))
+                                          .Max(r => Convert.ToDateTime(r.dataHora));
+
                 double totalHours = (_dataHora - _dataHoraAlmoco).TotalHours;
 
                 if (totalHours < 1)
@@ -77,8 +75,8 @@ namespace Desafio_Ilia_PARR.Controllers
                 _msg.mensagem = "Apenas 4 horários podem ser registrados por dia";
                 return StatusCode(StatusCodes.Status403Forbidden,_msg);
             }
-
             
+
             var _momentoCreated = await _repository.Create(momentoVO);
             List<Momento> _responseCreated = await _repository.FindAllDates(momentoVO);
             string _dia = _responseCreated.Select(r => Convert.ToDateTime(r.dataHora).ToString("yyyy-MM-dd")).First();  
