@@ -83,8 +83,7 @@ na rota <b>/v1/alocacoes</b>.
       "nomeProjeto": "ILIA CHALLENGE"
     }
 
-###### No último teste , vamos consumir a partir da rota <b>/v1/folha-de-ponto/{mes}</b> será apresentado apenas o campo mês 
-onde o ano e mês será inserido:
+###### No último teste , vamos consumir a partir da rota <b>/v1/folha-de-ponto/{mes}</b> será apresentado apenas o campo mês onde o ano e mês será inserido:
 
     mes 2022-12
 
@@ -93,4 +92,4 @@ onde o ano e mês será inserido:
 
 # Obrigado e espero que realize um bom teste !
 
-![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
+![Developers rules](https://myoctocat.com/assets/images/base-octocat.svg)
