@@ -64,8 +64,7 @@ Abra o Powershell (modo administrador) e execute o comando abaixo para atualizar
    
 ## Testes
 
-Sugiro que os testes sejam iniciados a partir da rota <b>/v1/batidas</b> , devido as validações que se encontram
-na rota <b>/v1/alocacoes</b>. 
+Após toda a parte de instalação e configuração , vamos rodar o projeto no VS2022CE a partir da tecla <b>F5</b> , no final da compilação e execução o browser de sua escolha apresentará a tela o Swagger com todos os serviços e rotas programadas. Sugiro que os testes sejam iniciados a partir da rota <b>/v1/batidas</b> , devido as validações que se encontram na rota <b>/v1/alocacoes</b>. 
 
 ###### sempre no formato a seguir :
 
